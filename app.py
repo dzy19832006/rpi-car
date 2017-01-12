@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*
 from flask import Flask, render_template, request, abort
-from car import Car
-from config import WEB_PORT
+#from car import Car
+#from config import WEB_PORT
 
 app = Flask(__name__)
 
-car = Car()
+#car = Car()
+
 
 handle_map = {
-    'forward': car.forward,
-    'left': car.left,
-    'right': car.right,
-    'pause': car.stop,
-    'backward': car.backward,
+     'forward': 'youyou',
+#    'forward': car.forward,
+#    'left': car.left,
+#    'right': car.right,
+#    'pause': car.stop,
+#    'backward': car.backward,
 }
 
+print(handle_map)
 
 @app.route('/', methods=['GET'])
 def main_page():
@@ -29,7 +32,7 @@ def handle():
     except ValueError:
         abort(404)  # 返回 404
     else:
-        if operation in handle_map.iterkeys():
+        if operation in handle_map:
             handle_map[operation]()
         else:
             abort(404)
